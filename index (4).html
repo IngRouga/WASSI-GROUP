@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wassi Group SARL | Communication, Audiovisuel & Solutions à Niamey</title>
+<meta name="description" content="Wassi Group SARL accompagne entreprises, organisations et particuliers à Niamey dans la communication digitale, l'audiovisuel, l'événementiel, l'informatique et le transport.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-deep:#0E3B2C;
+  --green-mid:#1E6B4A;
+  --green-bright:#2E9B6F;
+  --ink:#0B0C0B;
+  --paper:#F6F5F0;
+  --paper-warm:#EFEDE4;
+  --violet:#5B4E8C;
+  --line:rgba(11,12,11,0.12);
+  --line-light:rgba(246,245,240,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Manrope',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{
+  font-family:'Fraunces',serif;
+  font-weight:450;
+  letter-spacing:-0.01em;
+  line-height:1.05;
+}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+@media(max-width:700px){.wrap{padding:0 22px;}}
+
+button, .btn{cursor:pointer;font-family:'Manrope',sans-serif;border:none;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 30px;
+  font-size:15px;font-weight:700;
+  border-radius:2px;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1), background .35s;
+}
+.btn-primary{background:var(--green-bright);color:var(--paper);}
+.btn-primary:hover{transform:translateY(-2px);background:var(--green-mid);}
+.btn-outline{background:transparent;border:1.5px solid currentColor;color:var(--ink);}
+.btn-outline:hover{transform:translateY(-2px);}
+.btn-light{background:var(--paper);color:var(--ink);}
+.btn-light:hover{transform:translateY(-2px);}
+.btn-whatsapp{background:#0E3B2C;color:#fff;}
+.btn-whatsapp:hover{transform:translateY(-2px);background:#0a2e21;}
+
+/* ---------- NAV ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:22px 0;
+  transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+}
+header .wrap{display:flex;align-items:center;justify-content:space-between;}
+header.scrolled{
+  background:rgba(246,245,240,0.92);
+  backdrop-filter:blur(10px);
+  padding:14px 0;
+  box-shadow:0 1px 0 var(--line);
+}
+.logo{
+  font-family:'Fraunces',serif;font-weight:600;font-size:20px;letter-spacing:0.02em;
+  color:#fff; transition:color .4s;
+}
+header.scrolled .logo{color:var(--ink);}
+.logo span{color:var(--green-bright);}
+nav.mainnav{display:flex;gap:34px;align-items:center;}
+nav.mainnav a{
+  font-size:14.5px;font-weight:600;color:rgba(255,255,255,0.88);
+  position:relative; transition:color .4s;
+}
+header.scrolled nav.mainnav a{color:var(--ink);}
+nav.mainnav a:not(.btn)::after{
+  content:'';position:absolute;left:0;bottom:-4px;height:1px;width:0;background:currentColor;
+  transition:width .3s;
+}
+nav.mainnav a:not(.btn):hover::after{width:100%;}
+.nav-cta{display:flex;align-items:center;gap:18px;}
+.nav-cta .btn{padding:12px 22px;font-size:13.5px;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1200;}
+.burger span{width:26px;height:2px;background:#fff;transition:.3s;}
+header.scrolled .burger span{background:var(--ink);}
+.mobile-menu{
+  position:fixed;inset:0;background:var(--green-deep);z-index:1100;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:0 40px;
+  transform:translateY(-100%); transition:transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.mobile-menu.open{transform:translateY(0);}
+.mobile-menu a{font-family:'Fraunces',serif;font-size:32px;color:var(--paper);}
+.mobile-menu .btn{margin-top:10px;}
+
+@media(max-width:900px){
+  nav.mainnav, .nav-cta .btn-outline{display:none;}
+  .burger{display:flex;}
+  .nav-cta{gap:0;}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:flex-end;
+  background:var(--green-deep);color:var(--paper);overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0.55;}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(14,59,44,0.55) 0%, rgba(14,59,44,0.35) 40%, rgba(11,12,11,0.92) 100%);
+}
+.hero-content{position:relative;z-index:2;width:100%;padding-bottom:90px;}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;
+  color:rgba(246,245,240,0.75);margin-bottom:26px;
+}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--green-bright);}
+.hero h1{
+  font-size:clamp(48px,8vw,108px);
+  max-width:14ch;
+}
+.hero p.sub{
+  margin-top:28px;max-width:520px;font-size:19px;line-height:1.55;
+  color:rgba(246,245,240,0.82);
+}
+.hero-ctas{display:flex;gap:18px;margin-top:44px;flex-wrap:wrap;}
+.hero-bottom-row{
+  display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;
+}
+.scroll-hint{
+  writing-mode:vertical-rl;font-size:12.5px;letter-spacing:0.08em;color:rgba(246,245,240,0.6);
+  display:flex;align-items:center;gap:10px;
+}
+.scroll-hint::before{content:'';width:1px;height:50px;background:rgba(246,245,240,0.4);}
+
+@media(max-width:700px){
+  .hero-ctas{flex-direction:column;align-items:flex-start;}
+  .hero-bottom-row{flex-direction:column;align-items:flex-start;}
+  .scroll-hint{writing-mode:horizontal-tb;}
+  .scroll-hint::before{width:24px;height:1px;}
+}
+
+/* ---------- SECTION GENERIC ---------- */
+section{padding:130px 0;position:relative;}
+@media(max-width:700px){section{padding:80px 0;}}
+.eyebrow-label{font-size:13.5px;font-weight:700;color:var(--green-mid);margin-bottom:18px;}
+.section-head{max-width:640px;margin-bottom:70px;}
+.section-head h2{font-size:clamp(32px,4.4vw,54px);}
+.section-head p{margin-top:20px;font-size:17px;line-height:1.6;color:rgba(11,12,11,0.68);}
+
+/* ---------- INTRO ---------- */
+.intro{background:var(--paper);}
+.intro-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:start;}
+.intro-lead{font-family:'Fraunces',serif;font-size:clamp(26px,3vw,36px);line-height:1.35;color:var(--ink);}
+.intro-stats{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:10px;}
+.stat{border-top:1px solid var(--line);padding-top:18px;}
+.stat b{display:block;font-family:'Fraunces',serif;font-size:40px;color:var(--green-deep);}
+.stat span{font-size:14px;color:rgba(11,12,11,0.6);}
+@media(max-width:900px){.intro-grid{grid-template-columns:1fr;gap:44px;}}
+
+/* ---------- ACTIVITIES ---------- */
+.activities{background:var(--ink);color:var(--paper);}
+.activities .eyebrow-label{color:var(--green-bright);}
+.activities .section-head p{color:rgba(246,245,240,0.65);}
+.act-list{border-top:1px solid var(--line-light);}
+.act-row{
+  display:grid;grid-template-columns:60px 1fr 1.2fr;gap:36px;align-items:center;
+  padding:36px 0;border-bottom:1px solid var(--line-light);
+  transition:padding .4s ease, background .4s ease;
+}
+.act-row:hover{background:rgba(246,245,240,0.03);padding-left:14px;padding-right:14px;}
+.act-num{font-family:'Fraunces',serif;font-size:16px;color:rgba(246,245,240,0.4);}
+.act-name{font-family:'Fraunces',serif;font-size:clamp(22px,2.6vw,32px);}
+.act-desc{font-size:15.5px;color:rgba(246,245,240,0.62);line-height:1.55;}
+@media(max-width:800px){
+  .act-row{grid-template-columns:1fr;gap:8px;padding:26px 0;}
+  .act-num{order:1;}
+}
+
+/* ---------- DIGITAL & EVENT ---------- */
+.dne{background:var(--paper-warm);}
+.dne-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-bottom:60px;}
+.dne-tag{font-family:'Fraunces',serif;font-style:italic;font-size:22px;color:var(--green-deep);}
+.dne-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+.dne-card{background:var(--paper-warm);padding:34px 28px;min-height:150px;display:flex;align-items:center;transition:background .35s;}
+.dne-card:hover{background:var(--green-deep);color:var(--paper);}
+.dne-card span{font-family:'Fraunces',serif;font-size:19px;}
+@media(max-width:800px){.dne-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.dne-grid{grid-template-columns:1fr;}}
+.dne-media{margin-top:60px;display:grid;grid-template-columns:1.3fr 1fr;gap:24px;}
+.dne-media img{width:100%;height:100%;object-fit:cover;}
+.dne-media .tall{aspect-ratio:3/4;}
+.dne-media .stack{display:grid;gap:24px;}
+.dne-media .short{aspect-ratio:16/10;}
+@media(max-width:800px){.dne-media{grid-template-columns:1fr;}}
+
+/* ---------- PORTFOLIO ---------- */
+.portfolio{background:var(--ink);color:var(--paper);}
+.portfolio .eyebrow-label{color:var(--green-bright);}
+.filters{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px;}
+.filter-btn{
+  padding:10px 20px;border:1px solid rgba(246,245,240,0.25);border-radius:40px;
+  font-size:13.5px;font-weight:600;color:rgba(246,245,240,0.75);background:transparent;
+  transition:.3s;
+}
+.filter-btn.active,.filter-btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);}
+.masonry{
+  column-count:3;column-gap:18px;
+}
+@media(max-width:900px){.masonry{column-count:2;}}
+@media(max-width:560px){.masonry{column-count:1;}}
+.masonry-item{
+  break-inside:avoid;margin-bottom:18px;position:relative;overflow:hidden;border-radius:2px;
+  cursor:pointer;
+}
+.masonry-item img{width:100%;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1);}
+.masonry-item:hover img{transform:scale(1.06);}
+.masonry-caption{
+  position:absolute;left:0;right:0;bottom:0;padding:20px;
+  background:linear-gradient(0deg, rgba(0,0,0,0.75), transparent);
+  opacity:0;transition:opacity .4s;font-size:13px;font-weight:600;letter-spacing:0.02em;
+}
+.masonry-item:hover .masonry-caption{opacity:1;}
+.masonry-item.hidden{display:none;}
+
+.lightbox{
+  position:fixed;inset:0;background:rgba(6,7,6,0.94);z-index:2000;
+  display:none;align-items:center;justify-content:center;padding:40px;
+}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;}
+.lightbox-close{position:absolute;top:30px;right:40px;color:#fff;font-size:32px;cursor:pointer;}
+
+/* ---------- PRICING ---------- */
+.pricing{background:var(--paper);}
+.pricing-tabs{display:flex;gap:10px;margin-bottom:56px;flex-wrap:wrap;}
+.ptab{
+  padding:12px 22px;font-size:14px;font-weight:700;border:1px solid var(--line);
+  background:transparent;color:rgba(11,12,11,0.55);border-radius:40px;transition:.3s;
+}
+.ptab.active{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.pricing-panel{display:none;}
+.pricing-panel.active{display:block;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+.price-card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:44px 34px;position:relative;}
+.price-card.featured{background:var(--green-deep);color:var(--paper);}
+.price-card .ptitle{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--green-mid);margin-bottom:22px;}
+.price-card.featured .ptitle{color:var(--green-bright);}
+.price-card .pamount{font-family:'Fraunces',serif;font-size:40px;margin-bottom:26px;}
+.price-card ul{list-style:none;margin-bottom:32px;}
+.price-card li{
+  padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;
+}
+.price-card.featured li{border-top:1px solid rgba(246,245,240,0.18);}
+.price-card li:first-child{border-top:none;}
+.price-card .featured-tag{
+  position:absolute;top:-1px;right:24px;background:var(--green-bright);color:var(--ink);
+  padding:6px 14px;font-size:11.5px;font-weight:800;letter-spacing:0.05em;
+}
+@media(max-width:900px){.price-grid{grid-template-columns:1fr;}}
+
+/* ---------- WHY ---------- */
+.why{background:var(--paper-warm);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.why-img{aspect-ratio:4/5;overflow:hidden;}
+.why-img img{width:100%;height:100%;object-fit:cover;}
+.why-reason{display:grid;grid-template-columns:60px 1fr;gap:24px;padding:34px 0;border-top:1px solid var(--line);}
+.why-reason:last-child{border-bottom:1px solid var(--line);}
+.why-reason .rn{font-family:'Fraunces',serif;font-size:15px;color:rgba(11,12,11,0.35);}
+.why-reason h3{font-size:19px;margin-bottom:10px;}
+.why-reason p{font-size:15px;color:rgba(11,12,11,0.65);line-height:1.55;}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr;gap:40px;}}
+
+/* ---------- PROCESS ---------- */
+.process{background:var(--ink);color:var(--paper);}
+.process .eyebrow-label{color:var(--green-bright);}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-light);}
+.proc-card{background:var(--ink);padding:44px 28px;}
+.proc-card .pn{font-family:'Fraunces',serif;font-size:15px;color:var(--green-bright);margin-bottom:30px;}
+.proc-card h3{font-size:19px;margin-bottom:14px;letter-spacing:0.01em;}
+.proc-card p{font-size:14.5px;color:rgba(246,245,240,0.6);line-height:1.55;}
+@media(max-width:900px){.proc-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.proc-grid{grid-template-columns:1fr;}}
+
+/* ---------- CTA FINAL ---------- */
+.cta-final{
+  background:var(--green-deep);color:var(--paper);text-align:left;
+  padding:170px 0;
+}
+.cta-final h2{font-size:clamp(38px,6vw,74px);max-width:16ch;}
+.cta-final p{margin-top:24px;font-size:18px;max-width:520px;color:rgba(246,245,240,0.75);}
+.cta-final .ctas{display:flex;gap:18px;margin-top:46px;flex-wrap:wrap;}
+
+/* ---------- CONTACT ---------- */
+.contact{background:var(--paper);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.contact-info-row{display:flex;gap:20px;padding:24px 0;border-top:1px solid var(--line);}
+.contact-info-row:last-child{border-bottom:1px solid var(--line);}
+.contact-info-row .k{font-size:13px;font-weight:700;color:var(--green-mid);min-width:110px;}
+.contact-info-row .v{font-size:16px;}
+.form-field{margin-bottom:22px;}
+.form-field label{display:block;font-size:13px;font-weight:700;margin-bottom:8px;color:rgba(11,12,11,0.6);}
+.form-field input, .form-field select, .form-field textarea{
+  width:100%;padding:14px 4px;border:none;border-bottom:1.5px solid var(--line);
+  background:transparent;font-family:'Manrope',sans-serif;font-size:15.5px;color:var(--ink);
+  transition:border-color .3s;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{
+  outline:none;border-color:var(--green-deep);
+}
+.form-field textarea{resize:vertical;min-height:100px;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:50px;}}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:rgba(246,245,240,0.7);padding:80px 0 30px;}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:56px;border-bottom:1px solid var(--line-light);}
+.footer-logo{font-family:'Fraunces',serif;font-size:24px;color:var(--paper);margin-bottom:14px;}
+.footer-slogan{font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:rgba(246,245,240,0.55);}
+.footer-col h4{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--paper);margin-bottom:20px;}
+.footer-col a{display:block;font-size:14.5px;margin-bottom:12px;color:rgba(246,245,240,0.65);transition:color .3s;}
+.footer-col a:hover{color:var(--green-bright);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;flex-wrap:wrap;gap:16px;font-size:13px;}
+.socials{display:flex;gap:16px;}
+@media(max-width:800px){.footer-top{grid-template-columns:1fr;gap:36px;}}
+
+/* whatsapp float */
+.wa-float{
+  position:fixed;bottom:26px;right:26px;z-index:900;
+  width:60px;height:60px;border-radius:50%;background:#0E3B2C;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+.wa-float svg{width:28px;height:28px;fill:#fff;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="wrap">
+    <a href="#home" class="logo">WASSI <span>GROUP</span></a>
+    <nav class="mainnav">
+      <a href="#home">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#activites">Nos activités</a>
+      <a href="#digital-event">Wassi Digital & Event</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline">Parler à Wassi Group</a>
+      <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Accueil</a>
+  <a href="#apropos">À propos</a>
+  <a href="#activites">Nos activités</a>
+  <a href="#digital-event">Wassi Digital & Event</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Parler à Wassi Group</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home" style="padding:0;">
+  <div class="hero-bg"><img src="assets/hero-photographer.jpg" alt="Wassi Digital & Event"></div>
+  <div class="wrap hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span> Niamey, Niger</div>
+    <h1>Your Vision.<br>Our Mission.</h1>
+    <p class="sub">Des solutions créatives, digitales et événementielles pensées pour donner vie à vos projets.</p>
+    <div class="hero-bottom-row">
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Parler à Wassi Group</a>
+        <a href="#activites" class="btn btn-outline" style="color:#fff;">Découvrir nos activités</a>
+      </div>
+      <div class="scroll-hint">DÉFILER</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTRO ================= -->
+<section class="intro" id="apropos">
+  <div class="wrap">
+    <div class="eyebrow-label reveal">À propos de Wassi Group</div>
+    <div class="intro-grid">
+      <p class="intro-lead reveal">Une vision. Plusieurs expertises. Wassi Group SARL est une holding qui innove dans plusieurs domaines afin de proposer des solutions adaptées aux besoins de ses partenaires et clients.</p>
+      <div class="intro-stats reveal">
+        <div class="stat"><b>05</b><span>Domaines d'activité</span></div>
+        <div class="stat"><b>02</b><span>Lignes téléphoniques dédiées</span></div>
+        <div class="stat"><b>NG</b><span>Basé à Dan Gao, Niamey</span></div>
+        <div class="stat"><b>PA</b><span>Ambition panafricaine</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACTIVITIES ================= -->
+<section class="activities" id="activites">
+  <div class="wrap">
+    <div class="eyebrow-label reveal">Nos expertises</div>
+    <div class="section-head reveal">
+      <h2>Cinq domaines, une seule exigence.</h2>
+      <p>Chaque filiale de Wassi Group est pensée pour répondre à un besoin précis, avec la même exigence de qualité et d'efficacité.</p>
+    </div>
+    <div class="act-list">
+      <div class="act-row reveal">
+        <div class="act-num">01</div>
+        <div class="act-name">Communication digitale</div>
+        <div class="act-desc">Développez votre présence digitale avec des solutions pensées pour votre marque.</div>
+      </div>
+      <div class="act-row reveal">
+        <div class="act-num">02</div>
+        <div class="act-name">Audiovisuel</div>
+        <div class="act-desc">Des contenus visuels conçus pour raconter votre histoire et valoriser votre image.</div>
+      </div>
+      <div class="act-row reveal">
+        <div class="act-num">03</div>
+        <div class="act-name">Événementiel</div>
+        <div class="act-desc">Des solutions audiovisuelles et créatives pour donner une nouvelle dimension à vos événements.</div>
+      </div>
+      <div class="act-row reveal">
+        <div class="act-num">04</div>
+        <div class="act-name">Informatique</div>
+        <div class="act-desc">Des solutions technologiques adaptées aux besoins des entreprises et organisations.</div>
+      </div>
+      <div class="act-row reveal">
+        <div class="act-num">05</div>
+        <div class="act-name">Transport</div>
+        <div class="act-desc">Des solutions de mobilité adaptées aux besoins de nos partenaires.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WASSI DIGITAL & EVENT ================= -->
+<section class="dne" id="digital-event">
+  <div class="wrap">
+    <div class="dne-top reveal">
+      <div>
+        <div class="eyebrow-label">Wassi Digital & Event</div>
+        <h2 style="font-size:clamp(30px,4vw,48px);">Créons des images qui parlent.</h2>
+      </div>
+      <a href="#contact" class="btn btn-primary">Réserver une prestation</a>
+    </div>
+    <div class="dne-grid reveal">
+      <div class="dne-card"><span>Photographie</span></div>
+      <div class="dne-card"><span>Vidéographie</span></div>
+      <div class="dne-card"><span>Vidéo drone</span></div>
+      <div class="dne-card"><span>Interview</span></div>
+      <div class="dne-card"><span>Reportage</span></div>
+      <div class="dne-card"><span>Shooting studio</span></div>
+      <div class="dne-card"><span>Création visuelle</span></div>
+      <div class="dne-card"><span>Réseaux sociaux</span></div>
+      <div class="dne-card"><span>Stratégie digitale</span></div>
+    </div>
+    <div class="dne-media reveal">
+      <div class="tall"><img src="assets/traditional-woman.jpg" alt="Reportage événementiel Wassi Digital & Event"></div>
+      <div class="stack">
+        <div class="short"><img src="assets/camera-operator.jpg" alt="Vidéographie Wassi Digital & Event"></div>
+        <div class="short"><img src="assets/photoshoot-drone.jpg" alt="Vidéo drone Wassi Digital & Event"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFOLIO ================= -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="eyebrow-label reveal">Portfolio</div>
+    <div class="section-head reveal">
+      <h2>Des moments capturés avec exigence.</h2>
+      <p>Une sélection de nos réalisations : mariages, baptêmes, soutenances, événements corporate et reportages à travers Niamey.</p>
+    </div>
+    <div class="filters reveal">
+      <button class="filter-btn active" data-filter="all">TOUT</button>
+      <button class="filter-btn" data-filter="mariages">MARIAGES</button>
+      <button class="filter-btn" data-filter="baptemes">BAPTÊMES</button>
+      <button class="filter-btn" data-filter="soutenances">SOUTENANCES</button>
+      <button class="filter-btn" data-filter="anniversaires">ANNIVERSAIRES</button>
+      <button class="filter-btn" data-filter="evenements">ÉVÉNEMENTS</button>
+      <button class="filter-btn" data-filter="shooting">SHOOTING</button>
+      <button class="filter-btn" data-filter="reportages">REPORTAGES</button>
+      <button class="filter-btn" data-filter="corporate">CORPORATE</button>
+    </div>
+    <div class="masonry" id="masonryGrid">
+      <div class="masonry-item" data-cat="mariages,baptemes"><img src="assets/wedding-bride.jpg" alt="Mariage"><div class="masonry-caption">Mariage — Wassi Studio</div></div>
+      <div class="masonry-item" data-cat="evenements,corporate"><img src="assets/audience-crowd.jpg" alt="Événement corporate"><div class="masonry-caption">Événement — Wassi Digital & Event</div></div>
+      <div class="masonry-item" data-cat="mariages,baptemes"><img src="assets/wedding-group.jpg" alt="Baptême"><div class="masonry-caption">Baptême — Wassi Studio</div></div>
+      <div class="masonry-item" data-cat="reportages,corporate"><img src="assets/traditional-woman.jpg" alt="Reportage"><div class="masonry-caption">Reportage — Wassi Digital & Event</div></div>
+      <div class="masonry-item" data-cat="corporate,evenements"><img src="assets/team-portrait.jpg" alt="Corporate"><div class="masonry-caption">Corporate — Wassi Digital & Event</div></div>
+      <div class="masonry-item" data-cat="reportages,shooting"><img src="assets/camera-operator.jpg" alt="Tournage"><div class="masonry-caption">Tournage — Wassi Digital & Event</div></div>
+      <div class="masonry-item" data-cat="evenements,shooting"><img src="assets/miss-niger.jpg" alt="Miss Niger"><div class="masonry-caption">Événement — Wassi Digital & Event</div></div>
+      <div class="masonry-item" data-cat="shooting"><img src="assets/hero-photographer.jpg" alt="Shooting"><div class="masonry-caption">Shooting — Wassi Digital & Event</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img src="" id="lightboxImg" alt="">
+</div>
+
+<!-- ================= PRICING ================= -->
+<section class="pricing" id="prestations">
+  <div class="wrap">
+    <div class="eyebrow-label reveal">Nos prestations photo</div>
+    <div class="section-head reveal">
+      <h2>Des souvenirs qui restent.</h2>
+      <p>Trois formules pensées selon la nature de votre événement, avec un équilibre soigné entre qualité et prix.</p>
+    </div>
+    <div class="pricing-tabs reveal">
+      <button class="ptab active" data-panel="panel-mariage">Mariages / Baptêmes</button>
+      <button class="ptab" data-panel="panel-anniv">Anniversaires / Soutenances</button>
+    </div>
+
+    <div class="pricing-panel active reveal" id="panel-mariage">
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="ptitle">PHOTO BASIC</div>
+          <div class="pamount">200 000 FCFA</div>
+          <ul>
+            <li>80 photos</li>
+            <li>Album de 48 photos</li>
+            <li>10 minutes de résumé vidéo</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Réserver maintenant</a>
+        </div>
+        <div class="price-card featured">
+          <div class="featured-tag">RECOMMANDÉ</div>
+          <div class="ptitle">PHOTO STANDARD</div>
+          <div class="pamount">250 000 FCFA</div>
+          <ul>
+            <li>100 photos</li>
+            <li>Album de 64 photos</li>
+            <li>20 minutes de résumé vidéo</li>
+          </ul>
+          <a href="#contact" class="btn btn-light">Réserver maintenant</a>
+        </div>
+        <div class="price-card">
+          <div class="ptitle">PHOTO PREMIUM</div>
+          <div class="pamount">300 000 FCFA</div>
+          <ul>
+            <li>120 photos</li>
+            <li>Album de 96 photos</li>
+            <li>40 minutes de résumé vidéo</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Réserver maintenant</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-panel" id="panel-anniv">
+      <div class="price-grid">
+        <div class="price-card">
+          <div class="ptitle">PHOTO BASIC</div>
+          <div class="pamount">100 000 FCFA</div>
+          <ul>
+            <li>40 photos</li>
+            <li>Album de 24 photos</li>
+            <li>5 minutes de résumé vidéo</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Réserver maintenant</a>
+        </div>
+        <div class="price-card featured">
+          <div class="featured-tag">RECOMMANDÉ</div>
+          <div class="ptitle">PHOTO STANDARD</div>
+          <div class="pamount">120 000 FCFA</div>
+          <ul>
+            <li>50 photos</li>
+            <li>Album de 36 photos</li>
+            <li>10 minutes de résumé vidéo</li>
+          </ul>
+          <a href="#contact" class="btn btn-light">Réserver maintenant</a>
+        </div>
+        <div class="price-card">
+          <div class="ptitle">PHOTO PREMIUM</div>
+          <div class="pamount">150 000 FCFA</div>
+          <ul>
+            <li>60 photos</li>
+            <li>Album de 48 photos</li>
+            <li>15 minutes de résumé vidéo</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Réserver maintenant</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-img reveal"><img src="assets/why-choose.jpg" alt="Pourquoi choisir Wassi Group"></div>
+      <div class="reveal">
+        <div class="eyebrow-label">Pourquoi choisir Wassi Group ?</div>
+        <div class="why-reason">
+          <div class="rn">01</div>
+          <div><h3>Un accompagnement sur-mesure</h3><p>Chaque activité est pensée pour répondre aux besoins de nos clients.</p></div>
+        </div>
+        <div class="why-reason">
+          <div class="rn">02</div>
+          <div><h3>Des solutions rapides et efficaces</h3><p>De la création visuelle à la mobilité, nous agissons avec efficacité.</p></div>
+        </div>
+        <div class="why-reason">
+          <div class="rn">03</div>
+          <div><h3>Une équipe à l'écoute</h3><p>Chez Wassi Group, nous construisons des relations durables avec nos partenaires.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process">
+  <div class="wrap">
+    <div class="eyebrow-label reveal">Comment nous travaillons</div>
+    <div class="section-head reveal">
+      <h2>De l'idée à la livraison.</h2>
+    </div>
+    <div class="proc-grid reveal">
+      <div class="proc-card"><div class="pn">01</div><h3>Échange</h3><p>Nous échangeons sur votre besoin et vos objectifs.</p></div>
+      <div class="proc-card"><div class="pn">02</div><h3>Conception</h3><p>Nous construisons une solution adaptée à votre projet.</p></div>
+      <div class="proc-card"><div class="pn">03</div><h3>Réalisation</h3><p>Notre équipe transforme votre vision en résultat concret.</p></div>
+      <div class="proc-card"><div class="pn">04</div><h3>Livraison</h3><p>Nous vous accompagnons jusqu'à la finalisation de votre projet.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="cta-final">
+  <div class="wrap reveal">
+    <h2>Votre projet mérite une nouvelle dimension.</h2>
+    <p>Parlons de votre prochaine idée, de votre prochain événement ou de votre prochaine campagne.</p>
+    <div class="ctas">
+      <a href="#contact" class="btn btn-light">Parler à Wassi Group</a>
+      <a id="waCtaFinal" href="#" target="_blank" class="btn btn-whatsapp">Nous contacter sur WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="eyebrow-label reveal">Contact</div>
+    <div class="section-head reveal">
+      <h2>Parlons de votre projet.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-row"><div class="k">Adresse</div><div class="v">Dan Gao, Niamey – Niger</div></div>
+        <div class="contact-info-row"><div class="k">Téléphone</div><div class="v">+227 96 23 33 22<br>+227 20 34 24 24</div></div>
+        <div class="contact-info-row"><div class="k">Email</div><div class="v">wassigroup1274@gmail.com</div></div>
+        <div class="contact-info-row"><div class="k">WhatsApp</div><div class="v"><a id="waCtaContact" href="#" target="_blank" style="border-bottom:1px solid;">Discuter maintenant</a></div></div>
+      </div>
+      <form class="reveal" id="contactForm">
+        <div class="form-field"><label>Nom</label><input type="text" required></div>
+        <div class="form-field"><label>Entreprise</label><input type="text"></div>
+        <div class="form-field"><label>Téléphone</label><input type="tel" required></div>
+        <div class="form-field"><label>Email</label><input type="email" required></div>
+        <div class="form-field">
+          <label>Type de projet</label>
+          <select>
+            <option>Communication digitale</option>
+            <option>Audiovisuel</option>
+            <option>Événementiel</option>
+            <option>Informatique</option>
+            <option>Transport</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Message</label><textarea required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">WASSI GROUP</div>
+        <div class="footer-slogan">"Your Vision. Our Mission."</div>
+      </div>
+      <div class="footer-col">
+        <h4>NAVIGATION</h4>
+        <a href="#home">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#activites">Nos activités</a>
+        <a href="#digital-event">Wassi Digital & Event</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>CONTACT</h4>
+        <a href="#">Dan Gao, Niamey – Niger</a>
+        <a href="tel:+22796233322">+227 96 23 33 22</a>
+        <a href="tel:+22720342424">+227 20 34 24 24</a>
+        <a href="mailto:wassigroup1274@gmail.com">wassigroup1274@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Wassi Group SARL. Tous droits réservés.</div>
+      <div class="socials">
+        <a href="#">Facebook</a>
+        <a href="#">TikTok</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.46 3.492 1.334 5.012L2 22l5.117-1.318A9.955 9.955 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.148a8.13 8.13 0 01-4.15-1.135l-.298-.177-3.037.782.812-2.96-.194-.305A8.13 8.13 0 013.85 12c0-4.5 3.653-8.148 8.154-8.148 4.5 0 8.15 3.648 8.15 8.148 0 4.5-3.65 8.148-8.15 8.148z"/></svg>
+</a>
+
+<script>
+// header scroll state
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  header.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// mobile menu
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', ()=>{
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+
+// whatsapp links
+const waMessage = encodeURIComponent("Bonjour Wassi Group, je souhaite obtenir des informations concernant vos services. Je voudrais échanger avec votre équipe au sujet de mon projet.");
+const waLink = `https://wa.me/22796233322?text=${waMessage}`;
+document.getElementById('waFloat').href = waLink;
+document.getElementById('waCtaFinal').href = waLink;
+document.getElementById('waCtaContact').href = waLink;
+
+// portfolio filters
+const filterBtns = document.querySelectorAll('.filter-btn');
+const items = document.querySelectorAll('.masonry-item');
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    filterBtns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    items.forEach(it=>{
+      const cats = it.dataset.cat.split(',');
+      it.classList.toggle('hidden', f !== 'all' && !cats.includes(f));
+    });
+  });
+});
+
+// lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+items.forEach(it=>{
+  it.addEventListener('click', ()=>{
+    lightboxImg.src = it.querySelector('img').src;
+    lightbox.classList.add('open');
+  });
+});
+document.getElementById('lightboxClose').addEventListener('click', ()=>lightbox.classList.remove('open'));
+lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) lightbox.classList.remove('open'); });
+
+// pricing tabs
+const ptabs = document.querySelectorAll('.ptab');
+ptabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    ptabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.pricing-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(tab.dataset.panel).classList.add('active');
+  });
+});
+
+// contact form (no backend - friendly confirmation)
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = this.querySelector('button');
+  const original = btn.textContent;
+  btn.textContent = 'Demande envoyée ✓';
+  setTimeout(()=>{ btn.textContent = original; this.reset(); }, 2600);
+});
+
+// reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

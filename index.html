@@ -237,7 +237,7 @@ section{padding:130px 0;position:relative;}
 .activities .section-head p{color:rgba(246,245,240,0.65);}
 .act-list{border-top:1px solid var(--line-light);}
 .act-row{
-  display:grid;grid-template-columns:60px 1fr 1.2fr;gap:36px;align-items:center;
+  display:grid;grid-template-columns:56px 44px 1fr 1.2fr;gap:28px;align-items:center;
   padding:36px 0;border-bottom:1px solid var(--line-light);
   transition:padding .4s ease, background .4s ease;
 }
@@ -245,9 +245,47 @@ section{padding:130px 0;position:relative;}
 .act-num{font-family:'Fraunces',serif;font-size:16px;color:rgba(246,245,240,0.4);}
 .act-name{font-family:'Fraunces',serif;font-size:clamp(22px,2.6vw,32px);}
 .act-desc{font-size:15.5px;color:rgba(246,245,240,0.62);line-height:1.55;}
+
+.act-icon{
+  width:48px;height:48px;border-radius:50%;
+  border:1px solid rgba(246,245,240,0.18);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--green-bright);
+  transition:border-color .5s ease, transform .5s cubic-bezier(.2,.8,.2,1), background .5s ease;
+  animation:iconFloat 4.5s ease-in-out infinite;
+}
+.act-icon svg{width:22px;height:22px;display:block;}
+.act-icon svg path, .act-icon svg circle, .act-icon svg rect, .act-icon svg line, .act-icon svg polyline{
+  stroke-dasharray:60;stroke-dashoffset:60;
+  animation:iconDraw 2.2s ease forwards;
+}
+.act-row:nth-child(1) .act-icon{animation-delay:.1s;}
+.act-row:nth-child(2) .act-icon{animation-delay:.3s;}
+.act-row:nth-child(3) .act-icon{animation-delay:.5s;}
+.act-row:nth-child(4) .act-icon{animation-delay:.7s;}
+.act-row:nth-child(5) .act-icon{animation-delay:.9s;}
+.act-row:hover .act-icon{
+  border-color:var(--green-bright);
+  background:rgba(46,155,111,0.12);
+  transform:scale(1.12) rotate(-6deg);
+}
+@keyframes iconFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+.act-row:hover .act-icon{animation-play-state:paused;}
+@keyframes iconDraw{
+  to{stroke-dashoffset:0;}
+}
+@media (prefers-reduced-motion: reduce){
+  .act-icon{animation:none;}
+  .act-icon svg path, .act-icon svg circle, .act-icon svg rect, .act-icon svg line, .act-icon svg polyline{animation:none;stroke-dashoffset:0;}
+}
 @media(max-width:800px){
-  .act-row{grid-template-columns:1fr;gap:8px;padding:26px 0;}
-  .act-num{order:1;}
+  .act-row{grid-template-columns:48px 1fr;gap:16px;padding:26px 0;}
+  .act-num{order:2;grid-column:2;}
+  .act-name{grid-column:2;}
+  .act-desc{grid-column:2;}
 }
 
 /* ---------- DIGITAL & EVENT ---------- */
@@ -525,26 +563,64 @@ footer{background:var(--ink);color:rgba(246,245,240,0.7);padding:80px 0 30px;}
     </div>
     <div class="act-list">
       <div class="act-row reveal">
+        <div class="act-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11v2a2 2 0 0 0 2 2h1l4 4V5L6 9H5a2 2 0 0 0-2 2z"/>
+            <path d="M15.5 8.5a4 4 0 0 1 0 7"/>
+            <path d="M18.5 5.5a8 8 0 0 1 0 13"/>
+          </svg>
+        </div>
         <div class="act-num">01</div>
         <div class="act-name">Communication digitale</div>
         <div class="act-desc">Développez votre présence digitale avec des solutions pensées pour votre marque.</div>
       </div>
       <div class="act-row reveal">
+        <div class="act-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="14" height="11" rx="2"/>
+            <path d="M16 10l6-3v10l-6-3z"/>
+          </svg>
+        </div>
         <div class="act-num">02</div>
         <div class="act-name">Audiovisuel</div>
         <div class="act-desc">Des contenus visuels conçus pour raconter votre histoire et valoriser votre image.</div>
       </div>
       <div class="act-row reveal">
+        <div class="act-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="17" rx="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <circle cx="8.5" cy="14" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="12.5" cy="14" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
         <div class="act-num">03</div>
         <div class="act-name">Événementiel</div>
         <div class="act-desc">Des solutions audiovisuelles et créatives pour donner une nouvelle dimension à vos événements.</div>
       </div>
       <div class="act-row reveal">
+        <div class="act-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="12" rx="2"/>
+            <line x1="8" y1="20" x2="16" y2="20"/>
+            <line x1="12" y1="16" x2="12" y2="20"/>
+          </svg>
+        </div>
         <div class="act-num">04</div>
         <div class="act-name">Informatique</div>
         <div class="act-desc">Des solutions technologiques adaptées aux besoins des entreprises et organisations.</div>
       </div>
       <div class="act-row reveal">
+        <div class="act-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="11" rx="3"/>
+            <circle cx="7.5" cy="18.5" r="1.6"/>
+            <circle cx="16.5" cy="18.5" r="1.6"/>
+            <line x1="3" y1="11" x2="21" y2="11"/>
+          </svg>
+        </div>
         <div class="act-num">05</div>
         <div class="act-name">Transport</div>
         <div class="act-desc">Des solutions de mobilité adaptées aux besoins de nos partenaires.</div>
